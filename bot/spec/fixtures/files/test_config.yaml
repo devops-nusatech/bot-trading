@@ -1,0 +1,49 @@
+accounts:
+- id: 1
+  driver: bitfaker
+  host: "http://www.devkube.com"
+  key: ""
+  secret: ""
+- id: 2
+  driver: bitfaker
+  market: 'ETHUSD'
+  host: "api.bitfinex.com"
+  key: ""
+  secret: ""
+strategies:
+- type: copy
+  debug: true
+  enabled: true
+  period: 90
+  params:
+    spread_bids: 0.003
+    spread_asks: 0.003
+    limit_asks_base: 0.05
+    limit_bids_base: 0.05
+    levels_size: 0.25
+    levels_count: 5
+    side: both
+  target:
+    account_id: 1
+    market_id: 'ETHUSD'
+  sources:
+    - account_id: 2
+      market_id: 'ETHUSD'
+- type: copy
+  debug: true
+  enabled: true
+  period: 90
+  params:
+    spread_bids: 0.003
+    spread_asks: 0.003
+    limit_asks_base: 0.05
+    limit_bids_base: 0.05
+    levels_size: 0.25
+    levels_count: 5
+    side: both
+  target:
+    account_id: 1
+    market_id: 'BTCUSD'
+  sources:
+    - account_id: 2
+      market_id: 'BTCUSD'
