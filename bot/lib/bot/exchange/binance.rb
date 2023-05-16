@@ -19,7 +19,7 @@ module Bot::Exchange
 
     def initialize(config)
       super
-      @host ||= "https://api.binance.com"
+      @host ||= "https://api.binance.us"
 
       @connection = Faraday.new(url: @host, request: {params_encoder: Bot::Helpers::FlatParamsEncoder}) do |conn|
         conn.options.timeout = 10
@@ -43,7 +43,7 @@ module Bot::Exchange
       streams += @markets_to_listen.map {|market| "#{market.downcase}@aggTrade.b10" } if flag?(LISTEN_PUBLIC_TRADES)
       streams += @markets_to_listen.map {|market| "#{market.downcase}@depth" } if flag?(LISTEN_PUBLIC_ORDERBOOK)
 
-      @ws_url = "wss://stream.binance.com:9443/stream?streams=#{streams.join('/')}"
+      @ws_url = "wss://stream.binance.us:9443/stream?streams=#{streams.join('/')}"
       super(ws_id) unless streams.empty?
 
       if flag?(LISTEN_PUBLIC_ORDERBOOK)
@@ -61,9 +61,9 @@ module Bot::Exchange
     #
     # https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-streams.md#how-to-manage-a-local-order-book-correctly
     #
-    # 1. Open a stream to wss://stream.binance.com:9443/ws/bnbbtc@depth.
+    # 1. Open a stream to wss://stream.binance.us:9443/ws/bnbbtc@depth.
     # 2. Buffer the events you receive from the stream.
-    # 3. Get a depth snapshot from https://api.binance.com/api/v3/depth?symbol=BNBBTC&limit=1000 .
+    # 3. Get a depth snapshot from https://api.binance.us/api/v3/depth?symbol=BNBBTC&limit=1000 .
     # 4. Drop any event where u is <= lastUpdateId in the snapshot.
     # 5. The first processed event should have U <= lastUpdateId+1 AND u >= lastUpdateId+1.
     # 6. While listening to the stream, each new event's U should be equal to the previous event's u+1.

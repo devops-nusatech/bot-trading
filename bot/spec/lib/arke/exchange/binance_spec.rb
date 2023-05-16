@@ -7,7 +7,7 @@ describe Bot::Exchange::Binance do
 
   let(:binance) do
     Bot::Exchange::Binance.new(
-      "host"   => "https://api.binance.com",
+      "host"   => "https://api.binance.us",
       "key"    => "Uwg8wqlxueiLCsbTXjlogviL8hdd60",
       "secret" => "OwpadzSYOSkzweoJkjPrFeVgjOwOuxVHk8FXIlffdWw"
     )

@@ -5,10 +5,10 @@ shared_context "mocked binance" do
     @authorized_api_key = "Uwg8wqlxueiLCsbTXjlogviL8hdd60"
     authorized_headers = {"X-MBX-APIKEY" => @authorized_api_key}
 
-    stub_request(:post, "https://api.binance.com/api/v3/order")
+    stub_request(:post, "https://api.binance.us/api/v3/order")
       .to_return(status: 401, body: "Unauthorized", headers: {})
 
-    stub_request(:get, "https://api.binance.com/api/v1/depth?limit=1000&symbol=ETHUSDT")
+    stub_request(:get, "https://api.binance.us/api/v1/depth?limit=1000&symbol=ETHUSDT")
       .to_return(
         status:  200,
         body:    {
@@ -23,7 +23,7 @@ shared_context "mocked binance" do
         }
       )
 
-    stub_request(:get, "https://api.binance.com/api/v1/depth?limit=1000&symbol=BTCUSDT")
+    stub_request(:get, "https://api.binance.us/api/v1/depth?limit=1000&symbol=BTCUSDT")
       .to_return(
         status:  200,
         body:    file_fixture("binance-BTCUSDT.json"),
@@ -32,11 +32,11 @@ shared_context "mocked binance" do
         }
       )
 
-    stub_request(:post, %r{https://api.binance.com/api/v3/order})
+    stub_request(:post, %r{https://api.binance.us/api/v3/order})
       .with(headers: authorized_headers)
       .to_return(status: 200, body: "", headers: {})
 
-    stub_request(:get, "https://api.binance.com/api/v3/exchangeInfo")
+    stub_request(:get, "https://api.binance.us/api/v3/exchangeInfo")
       .to_return(
         status:  200,
         body:    {
@@ -159,7 +159,7 @@ shared_context "mocked binance" do
         }
       )
 
-    stub_request(:get, %r{https://api.binance.com/api/v3/account})
+    stub_request(:get, %r{https://api.binance.us/api/v3/account})
       .with(headers: authorized_headers)
       .to_return(status:  200,
                  body:    {
@@ -188,7 +188,7 @@ shared_context "mocked binance" do
                    "content-type" => "application/json;charset=utf-8",
                  })
 
-    stub_request(:get, %r{https://api.binance.com/api/v3/openOrders})
+    stub_request(:get, %r{https://api.binance.us/api/v3/openOrders})
       .with(headers: authorized_headers)
       .to_return(status:  200,
                  body:    [
@@ -215,7 +215,7 @@ shared_context "mocked binance" do
                    "content-type" => "application/json;charset=utf-8",
                  })
 
-    stub_request(:get, "https://api.binance.com/api/v3/depth?limit=1000&symbol=ETHUSDT")
+    stub_request(:get, "https://api.binance.us/api/v3/depth?limit=1000&symbol=ETHUSDT")
       .with(
         headers: {
           "Accept-Encoding" => "gzip, compressed",
@@ -232,7 +232,7 @@ shared_context "mocked binance" do
         ]
       }.to_json, headers: {})
 
-    stub_request(:get, "https://api.binance.com/api/v3/depth?limit=1000&symbol=BTCUSDT")
+    stub_request(:get, "https://api.binance.us/api/v3/depth?limit=1000&symbol=BTCUSDT")
       .with(
         headers: {
           "Accept-Encoding" => "gzip, compressed",
