@@ -1,0 +1,112 @@
+version: '3.6'
+services:
+
+  trxusdt:
+    restart: always
+    image: "heavenbot:0.0.2"
+    volumes:
+      - ./config/trxusdt.yml:/home/app/config/strategies.yml
+    command: bash -c "bundle exec ./bin/bot start"
+    logging:
+      driver: "json-file"
+      options:
+          max-size: "50m"
+
+  ethusdt:
+    restart: always
+    image: "heavenbot:0.0.2"
+    volumes:
+      - ./config/ethusdt.yml:/home/app/config/strategies.yml
+    command: bash -c "bundle exec ./bin/bot start"
+    logging:
+      driver: "json-file"
+      options:
+          max-size: "50m"
+
+  bnbusdt:
+    restart: always
+    image: "heavenbot:0.0.2"
+    volumes:
+      - ./config/bnbusdt.yml:/home/app/config/strategies.yml
+    command: bash -c "bundle exec ./bin/bot start"
+    logging:
+      driver: "json-file"
+      options:
+          max-size: "50m"
+
+  jstusdt:
+    restart: always
+    image: "heavenbot:0.0.2"
+    volumes:
+      - ./config/jstusdt.yml:/home/app/config/strategies.yml
+    command: bash -c "bundle exec ./bin/bot start"
+    logging:
+      driver: "json-file"
+      options:
+          max-size: "50m"
+
+  maticusdt:
+    restart: always
+    image: "heavenbot:0.0.2"
+    volumes:
+      - ./config/maticusdt.yml:/home/app/config/strategies.yml
+    command: bash -c "bundle exec ./bin/bot start"
+    logging:
+      driver: "json-file"
+      options:
+          max-size: "50m"
+
+  cakeusdt:
+    restart: always
+    image: "heavenbot:0.0.2"
+    volumes:
+      - ./config/cakeusdt.yml:/home/app/config/strategies.yml
+    command: bash -c "bundle exec ./bin/bot start"
+    logging:
+      driver: "json-file"
+      options:
+          max-size: "50m"
+
+  uniusdt:
+    restart: always
+    image: "heavenbot:0.0.2"
+    volumes:
+      - ./config/uniusdt.yml:/home/app/config/strategies.yml
+    command: bash -c "bundle exec ./bin/bot start"
+    logging:
+      driver: "json-file"
+      options:
+          max-size: "50m"
+
+  busdusdt:
+    restart: always
+    image: "heavenbot:0.0.2"
+    volumes:
+      - ./config/busdusdt.yml:/home/app/config/strategies.yml
+    command: bash -c "bundle exec ./bin/bot start"
+    logging:
+      driver: "json-file"
+      options:
+          max-size: "50m"
+
+  shibusdt:
+    restart: always
+    image: "heavenbot:0.0.2"
+    volumes:
+      - ./config/shibusdt.yml:/home/app/config/strategies.yml
+    command: bash -c "bundle exec ./bin/bot start"
+    logging:
+      driver: "json-file"
+      options:
+          max-size: "50m"
+
+  crvusdt:
+    restart: always
+    image: "heavenbot:0.0.2"
+    volumes:
+      - ./config/crvusdt.yml:/home/app/config/strategies.yml
+    command: bash -c "bundle exec ./bin/bot start"
+    logging:
+      driver: "json-file"
+      options:
+          max-size: "50m"

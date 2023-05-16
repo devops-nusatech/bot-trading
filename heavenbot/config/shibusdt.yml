@@ -1,0 +1,66 @@
+log_level: INFO                                           # Level of Arke log info
+accounts:
+#---------------------------{source}-----------------------------------
+- id: binance_source                                      # Unique account id of the source
+  driver: binance                                         # One of supported sources drivers
+  delay: 1                                                # Delay of balance information update
+  key: ""                                                 # API key from source (not required for copy strategy)
+  secret: ""
+  verify_ssl: false                                                 # Secret from API key from source (not required for copy strategy)
+
+#---------------------------{target}-----------------------------------
+- id: heaven_target                                    # Unique account id of the target
+  driver: nusabot                                         # Only supported target driver
+  key: "bd4c9d384431f152"                                 # API key from the target, required
+  secret: "1175cd01a200fc899722334f3037fa22"              # Secret from API key from the target, required
+  host: "https://www.heavenexchange.io"                   # Your target URL
+  ws: "wss://www.heavenexchange.io"                       # Your target WebSocet URL
+  delay: [5,4,3,2,1,3]
+  verify_ssl: false                                     # Delay of balance information update
+
+strategies:
+#---------------------------{strategy}-----------------------------------
+- id: copy-SHIBUSDT                                        # Name of a strategy
+  type: simple-copy                                              # Type of the strategy
+  debug: false                                            # True to see extra Bot logs
+  enabled: true                                           # True to run this strategy after Bot (re)startgit
+  period: 90                                               # Period of order book refresh
+  params:
+    spread_bids: 0.0005                                    # Percentage difference from the best price on buy side
+    spread_asks: 0.0005                                    # Percentage difference from the best price on sell side
+    balance_base_perc: 0.5                                # Percentage of the balance to use in Asks side
+    balance_quote_perc: 0.5                               # Percentage of the balance to use in Bids side
+    levels_price_step: 0.00000001                             # Minimum price difference between levels
+    levels_price_func: linear                             # Function to use for levels price step from the level, possibles values are constant, linear, exp
+    limit_asks_base: 300000000                                 # The amount of base currency that will be placed for sale in the order book, if have enough balance
+    limit_bids_base: 300000000                                 # The amount of base currency that will be placed for buy in the order book, if have enough balance in quote currency equivalent
+    max_amount_per_order: 6000000                              # Limit amount of base currency per order (the small amount are, the bigger number of orders at the same price will be created)
+    levels_size: 1                                        # Minimum price difference between price points
+    levels_count: 30                                      # Maximum amount of price points that may be created
+    side: both                                            # Side, ask, bid or both to apply the strategy on
+    random: 0.3                                           # Random factor to apply to every level, default is 0.3 for 30%
+    levels: [0.1, 0.2, 0.3, 1, 2, 0.1]                         # Levels pattern to use in case of custom shape. (ex: [0.1, 0.2, 1, 2, 0.1])
+    shape: v                                              # Pattern to be used to generate the orderbook, possible values are v, w and custom
+
+  #---------------------------{fixer-dynamic}-----------------------------------                                       # Period of converting rate refresh
+  target:
+    account_id: heaven_target                          # Unique account id, from the account section, that will be used as a target (your exchange)
+    market_id: shibusdt                                     # Market pair code in lowercase, from your target exchange
+  sources:
+  - account_id: binance_source                            # Unique account id, from the account section, that will be used as a source
+    market_id: SHIBUSDT                                   # Market pair code in uppercase, from you source exchange
+
+#---------------------------{microtrade}-----------------------------------
+- id: microtrades-SHIBUSDT            # Name of a strategy
+  type: microtrades                   # Type of the strategy
+  debug: false                        # True to see extra Arke logs
+  enabled: true                       # True to run this strategy after Arke (re)startgit
+  period: 60                          # Period between micro trades
+  period_random_delay: 8              # Random delay applied to a period
+  params:
+    linked_strategy_id: copy-SHIBUSDT  # Strategy that microtrade links to, to calculate order price
+    min_amount: 1250000                     # Minimum amount of order
+    max_amount: 3000000                   # Maximum amount of order
+  target:
+    account_id: heaven_target      # Unique account id, from the account section, that will be used as a target (your exchange)
+    market_id: shibusdt                 # Market pair code in lowercase, from your target exchange
