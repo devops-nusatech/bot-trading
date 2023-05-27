@@ -3,7 +3,7 @@ services:
 
   trxusdt:
     restart: always
-    image: "heavenbot:0.0.2"
+    image: "devopsnusatech/bot-heaven"
     volumes:
       - ./config/trxusdt.yml:/home/app/config/strategies.yml
     command: bash -c "bundle exec ./bin/bot start"
@@ -14,7 +14,7 @@ services:
 
   ethusdt:
     restart: always
-    image: "heavenbot:0.0.2"
+    image: "devopsnusatech/bot-heaven"
     volumes:
       - ./config/ethusdt.yml:/home/app/config/strategies.yml
     command: bash -c "bundle exec ./bin/bot start"
@@ -25,7 +25,7 @@ services:
 
   bnbusdt:
     restart: always
-    image: "heavenbot:0.0.2"
+    image: "devopsnusatech/bot-heaven"
     volumes:
       - ./config/bnbusdt.yml:/home/app/config/strategies.yml
     command: bash -c "bundle exec ./bin/bot start"
@@ -36,7 +36,7 @@ services:
 
   jstusdt:
     restart: always
-    image: "heavenbot:0.0.2"
+    image: "devopsnusatech/bot-heaven"
     volumes:
       - ./config/jstusdt.yml:/home/app/config/strategies.yml
     command: bash -c "bundle exec ./bin/bot start"
@@ -47,7 +47,7 @@ services:
 
   maticusdt:
     restart: always
-    image: "heavenbot:0.0.2"
+    image: "devopsnusatech/bot-heaven"
     volumes:
       - ./config/maticusdt.yml:/home/app/config/strategies.yml
     command: bash -c "bundle exec ./bin/bot start"
@@ -58,7 +58,7 @@ services:
 
   cakeusdt:
     restart: always
-    image: "heavenbot:0.0.2"
+    image: "devopsnusatech/bot-heaven"
     volumes:
       - ./config/cakeusdt.yml:/home/app/config/strategies.yml
     command: bash -c "bundle exec ./bin/bot start"
@@ -69,7 +69,7 @@ services:
 
   uniusdt:
     restart: always
-    image: "heavenbot:0.0.2"
+    image: "devopsnusatech/bot-heaven"
     volumes:
       - ./config/uniusdt.yml:/home/app/config/strategies.yml
     command: bash -c "bundle exec ./bin/bot start"
@@ -80,7 +80,7 @@ services:
 
   busdusdt:
     restart: always
-    image: "heavenbot:0.0.2"
+    image: "devopsnusatech/bot-heaven"
     volumes:
       - ./config/busdusdt.yml:/home/app/config/strategies.yml
     command: bash -c "bundle exec ./bin/bot start"
@@ -91,7 +91,7 @@ services:
 
   shibusdt:
     restart: always
-    image: "heavenbot:0.0.2"
+    image: "devopsnusatech/bot-heaven"
     volumes:
       - ./config/shibusdt.yml:/home/app/config/strategies.yml
     command: bash -c "bundle exec ./bin/bot start"
@@ -102,7 +102,7 @@ services:
 
   crvusdt:
     restart: always
-    image: "heavenbot:0.0.2"
+    image: "devopsnusatech/bot-heaven"
     volumes:
       - ./config/crvusdt.yml:/home/app/config/strategies.yml
     command: bash -c "bundle exec ./bin/bot start"
